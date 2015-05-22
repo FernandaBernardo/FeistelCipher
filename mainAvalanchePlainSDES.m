@@ -1,24 +1,24 @@
 nBits = 8;
-nRepeticoes = 10000;
+nRepeticoes = 100;
 nRodadas = 25;
 
 entropia = zeros(4,nRodadas);
 
 for rodadas=1:nRodadas
-    matriz = zeros(nRepeticoes,nBits,nBits^2/4); 
+    matriz = zeros(nRepeticoes,nBits,nBits); 
     for repeticoes=1:nRepeticoes;
         for bit=1:nBits
-            P = rand(1,nBits)>.5; %obtem um bloco de bits aleatorio
+            K = rand(1,10)>.5; %obtem uma chave aleatoria
 
-            
-            K1 = rand(1,10)>.5; %obtem uma chave aleatoria
-            C1 = SDESencryption(P,K1,rodadas);
+            P1 = rand(1,nBits)>.5; %obtem um bloco de bits aleatorio
+            C1 = SDESencryption(P1,K,rodadas);
 
-            K2 = K1;
-            K2(bit) = ~K2(bit); %inverte um dos bits da chave K1
-            C2 = SDESencryption(P,K2,rodadas);
+            P2 = P1;
+            P2(bit) = ~P2(bit); %inverte um dos bits do texto P1
+            C2 = SDESencryption(P2,K,rodadas);
 
             %computa o que mudou na cifra
+            
             matriz(repeticoes,:,bit) = mod(C1+C2,2);
         end
     end
@@ -29,7 +29,7 @@ for rodadas=1:nRodadas
     entropiaTri = [];
     entropiaBi = [];
     entropiaMono = [];
-    for bit=1:nBits^2/4
+    for bit=1:nBits
         for bit4=1:nBits
         for bit3=(bit4+1):nBits
         for bit2=(bit3+1):nBits
