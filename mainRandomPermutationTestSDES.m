@@ -1,5 +1,5 @@
 nBits = 8;
-nRodadas = 20;
+nRodadas = 30;
 
 bases = 2.^((nBits-1):-1:0);
 

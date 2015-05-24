@@ -1,6 +1,6 @@
 nBits = 8;
 nRepeticoes = 10000;
-nRodadas = 25;
+nRodadas = 5;
 
 entropia = zeros(4,nRodadas);
 
