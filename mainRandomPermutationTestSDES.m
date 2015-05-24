@@ -6,8 +6,8 @@ bases = 2.^((nBits-1):-1:0);
 convKey = [];
 convText = [];
 
-for key=1:2^(nBits^2/4)
-    convKey = [convKey; dec2bin(key-1,nBits^2/4)=='1'];
+for key=1:2^(10)
+    convKey = [convKey; dec2bin(key-1,10)=='1'];
 end
 
 for text=1:2^(nBits)
@@ -22,7 +22,7 @@ for rodadas=1:nRodadas
 end
 
 for text=1:2^nBits
-    for key=1:2^(nBits^2/4)
+    for key=1:10
         P = convText(text,:);
         K = convKey(key,:);
         for rodadas=1:nRodadas
